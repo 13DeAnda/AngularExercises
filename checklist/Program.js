@@ -86,7 +86,7 @@ app.directive('testDirec', function () {
         
             '<div ng-model"listOflements">'+
                 '<div ng-repeat="item in itemsList |filter: filterSubmitted">'+
-                    '<input type="checkbox" ng-click="checkItem(item)" ng-disabled="{{item.submitted}}"> {{item.item}}'+
+                    '<input type="checkbox" ng-click="checkItem(item)" ng-show="{{!item.submitted}}"> {{item.item}}'+
                 '</div>'+
             '</div>'+
                    
