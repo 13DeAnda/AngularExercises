@@ -12,7 +12,7 @@ app.directive('testDirec', function () {
     }
 
     function controller($scope) {
-        $scope.showAlreadyAdded=false;
+        $scope.showAlreadyAdded = false;
         $scope.itemsList=[
         {
             item:"maria1",
