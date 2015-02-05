@@ -5,35 +5,86 @@ app.controller('TestCtrl', [ '$scope',
     }
 ]);
 
-app.directive('testDirec', function () {
-    
-    
-    function linkingFunction(scope, element, attrs) {
-    }
+app.directive('product', function () {
+ 
+    function linkingFunction(scope, element, attrs) {}
 
     function controller($scope) {
-        
-        $scope.productList=[
+              $scope.productList=[
         {
             id:0,
             name:"product0",
             price:34,
-            qty:4,
+            qty:1,
         },
         {
             id:1,
             name:"product1",
             price:93,
-            qty:4,
+            qty:1,
         },
         {
             id:3,
             name:"product3",
             price:4,
-            qty:23,
+            qty:1,
         }
-        ];
-        ///list of items on the cart        
+        ];   
+      $scope.getQty=function(product){
+           var idSearch="qty"+product.id;
+           $scope.qty= Number(document.getElementById(idSearch).value);   
+        }   
+        
+    }
+    return {
+        restrict: 'E'
+        , template:  '<div name="ProductForm">'+
+        '<div ng-model"listOflements">'+
+        '<h3 class="titleMain">Product List</h3>'+
+                '<div class="product" ng-repeat="product in productList">'+
+                    '<b class="title">{{product.name}} </b><br>'+
+                    '<b>Price:$</b>{{product.price}}'+
+        '<div>qty:<input type="text" " style="width:20px;" value="1" id="qty{{product.id}}" ng-model"qty" ></div>'+
+        '<div><input type="submit" value="Add to Cart"  ng-click="getQty(product);addToCart(product,qty)"> </div>'+
+                '</div>'+
+       ' </div>'
+        , scope: {
+            addToCart:'='
+        }
+        , link: linkingFunction
+        , controller: controller
+    }
+});
+
+app.directive('cart', function () {
+ 
+    function linkingFunction(scope, element, attrs) {
+        scope.addToCart=function(product,qty){
+           qty=Number(qty);
+            
+            if(qty<1)
+                return;
+            
+            //product already exist
+            for(var i in scope.cartList){
+                if(product.id == scope.cartList[i].id){
+                    scope.cartList[i].qty+=qty;
+                    scope.total=scope.getTotal();
+                    return;                    
+                }
+                
+            }
+            
+            //if product doesnt exist
+            product.qty=qty;
+            scope.cartList.push(product);
+            scope.total=scope.getTotal();
+             
+        }
+}
+
+    function controller($scope) {
+       ///list of items on the cart        
         $scope.cartList=[
             {
             id:1,
@@ -41,31 +92,8 @@ app.directive('testDirec', function () {
             price:93,
             qty:2,
             }];
-                
-        //adds to shopping cart
-        $scope.addToCart=function(product){
-            var idSearch="qty"+product.id;
-            var qty=Number(document.getElementById(idSearch).value);
-            
-            if(qty<1)
-                return;
-            
-            //product already exist
-            for(var i in $scope.cartList){
-                if(product.id == $scope.cartList[i].id){
-                    $scope.cartList[i].qty+=qty;
-                    $scope.total=$scope.getTotal();
-                    return;                    
-                }
-                
-            }
-            //if product doesnt exist
-            product.qty=qty;
-            $scope.cartList.push(product);
-            $scope.total=$scope.getTotal();
-             
-        }
-        //update the cart products
+        
+         //update the cart products
         $scope.update=function(){
             var temp=[];
             
@@ -93,35 +121,29 @@ app.directive('testDirec', function () {
         $scope.total=$scope.getTotal();
 
         
+
         
     }
     return {
         restrict: 'E'
-        , template: '<div name="ProductForm">'+
-        
-        '\\\\\Products:\\\\ <div ng-model"listOflements">'+
-                '<div ng-repeat="product in productList">'+
-                    '<p>{{product.name}} <br>'+
-                    'Price: ${{product.price}}'+
-                    'qty:<input type="text" " style="width:20px;" value="1" id="qty{{product.id}}" ><br>'+
-                    '<input type="submit"  value="Add to Cart" ng-click="addToCart(product)">  </p>'+
-                '</div>'+
-        
-        
-        '\\\\\\\Cart:\\\\\\\\\ <div ng-model"Cart">'+
+        , template:  '<div name="ProductForm">'+
+         ' <div ng-model"Cart">'+
+        '<h3 class="titleMain">Cart</h3>'+
                 '<div ng-repeat="product in cartList">'+
-                    '<p> {{product.name}}  \t\t   ${{product.price}}'+
-                    '\t\t  qty:<input type="text"  style="width:20px;" value="{{product.qty}}" id="qtyC{{product.id}}">'+
+                    '<b class="title">{{product.name}}</b>${{product.price}}'+
+                    'qty:<input type="text"  style="width:20px;" value="{{product.qty}}" id="qtyC{{product.id}}">'+
                 '</div>'+
         
-        'total:{{total}}<br>'+
-                '<input type="submit"  value="save chanes" ng-click="update()">'+
-                '<input type="submit"  value="checkout" ng-click="checkOut()" </p>'+
-        
+        '<div><b>total:<b>{{total}}</div><br>'+
+               '<div class="center">'+
+                '<input class="button" type="submit"  value="save changes" ng-click="update()">'+
+                '<input class="button"type="submit"  value="checkout" ng-click="checkOut()" </p>'+
+                 '<div>'+
             '</div>'+
                    
         '</div>'
         , scope: {
+            addToCart:'='
         }
         , link: linkingFunction
         , controller: controller
