@@ -1,17 +1,23 @@
 //for a checklist
 
 
-<!doctype html>
-<html ng-app="myApp">
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
   <head>
+    <meta charset="utf-8">
+    <title>Cart Test</title>
     <script src="https://code.angularjs.org/1.2.11/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <script src="Program1.js"></script>
+    
   </head>
 <body>
-    <section ng-app="myApp" id="myApp">
-    <div ng-controller="TestCtrl">
-        <test-direc></test-direc>
-    </div>
+   <div ng-app="myApp">
+  <div ng-controller="TestCtrl">
+      <product add-to-cart="s"></product>
+      <cart add-to-cart="s" ></cart>
+  </div>
+</div>
 	</section>
   </body>
 </html>
