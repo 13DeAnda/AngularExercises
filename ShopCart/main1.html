@@ -1,6 +1,3 @@
-//for a checklist
-
-
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
   <head>
@@ -9,15 +6,16 @@
     <script src="https://code.angularjs.org/1.2.11/angular.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="Program1.js"></script>
-    
+    <script src="Products.js"></script>
+    <script src="cart.js"></script>
   </head>
 <body>
-   <div ng-app="myApp">
-  <div ng-controller="TestCtrl">
+  <div>
+    <div ng-controller="TestCtrl">
       <product add-to-cart="s"></product>
       <cart add-to-cart="s" ></cart>
+    </div>
   </div>
-</div>
 	</section>
-  </body>
+</body>
 </html>

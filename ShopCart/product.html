@@ -1,0 +1,16 @@
+<div>
+    <div ng-model"listOflements">
+        <h3 class="titleMain">Product List</h3>
+        <div class="product" ng-repeat="product in productList">
+            <b class="title">{{product.name}} </b><br>
+            <b>Price:$</b>{{product.price}}
+            <div>
+            qty:
+            <input type="text" style="width:20px;" value="1" id="qty{{product.id}}" ng-model"qty">
+            </div>
+            <div>
+            <input type="submit" value="Add to Cart" ng-click="getQty(product);addToCart(product,qty)"> 
+            </div>
+        </div>
+    </div>
+</div>

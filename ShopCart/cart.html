@@ -1,0 +1,16 @@
+
+<div>
+    <div ng-model"Cart">
+        <h3 class="titleMain">CART</h3>
+        <div ng-repeat="product in cartList">
+            <b class="title">{{product.name}}</b>${{product.price}}
+            qty:<input type="text"  style="width:20px;" value="{{product.qty}}" id="qtyC{{product.id}}">
+        </div>
+        
+        <div><b>total:<b>{{total}}</div><br>
+        <div class="center">
+            <input class="button" type="submit"  value="save changes" ng-click="update()">
+            <input class="button"type="submit"  value="checkout" ng-click="checkOut()" </p>
+        <div>
+    </div>
+</div>
