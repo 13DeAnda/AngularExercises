@@ -1,6 +1,5 @@
 app.directive('testDirec', function () {
 
-
     function linkingFunction(scope, element, attrs) {
     }
 
@@ -32,32 +31,26 @@ app.directive('testDirec', function () {
                     checked:false
                 });
              $scope.newItem="";
-        }
+        };
         //filters the displayed items
         $scope.filterSubmitted=function(item){
-            if($scope.showAlreadyAdded)
+            if($scope.showAlreadyAdded){
                 return true;
+            }
+
             return !item.submitted;
 
-        }
-        //when chekbox is clicked change flag
-        $scope.showAlreadyAddedF=function(){
-                $scope.showAlreadyAdded=!$scope.showAlreadyAdded;
-        }
-        //checks and uncheks an item
-        $scope.checkItem=function(item){
-            item.checked=!item.checked;
-        }
+        };
 
         //changes items selected to submitted true
         $scope.submitList=function(){
-            for(var i in $scope.itemsList)
+            for(var i in $scope.itemsList){
                 if($scope.itemsList[i].checked){
                      $scope.itemsList[i].submitted=true;
                      $scope.itemsList[i].checked=false;
                 }
-
-        }
+            }
+        };
         //deletes from the list the selected items
         $scope.deleteSelected=function(){
             var newList = [];
@@ -77,5 +70,5 @@ app.directive('testDirec', function () {
         },
         link: linkingFunction,
         controller: controller,
-    }
+    };
 });
