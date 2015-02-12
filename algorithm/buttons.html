@@ -1,0 +1,26 @@
+<div>
+    <h1>SelectionSort</h1>
+    <div ng-model"selectionSort">
+        <input type="submit"  value="start" ng-click="start()">
+        <input type="submit"  value="next step" ng-click="next()" ng-disabled="nextButtonDisabled">
+        <input type="submit"  value="back" ng-click="back() "  ng-disabled="backButtonDisabled">
+
+
+
+
+        <br>
+        <div class="array" ng-repeat="val in arrayOnView">
+            <div class="{{val.color}}">
+                {{val.value}}
+                {{getValue(val)}}
+            </div>
+        </div>
+        <br>
+        <div class="blue">
+            {{currentEvaluedDisplayed}}<br>
+        </div>
+        <div class="red">
+            {{currentSmallestDisplayed}}<br>
+        </div>
+    </div>
+</div>

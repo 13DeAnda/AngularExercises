@@ -1,0 +1,13 @@
+<div name="listForm">
+    <input type="text" ng-model="newItem">
+    <input type="submit"  value="Add item" ng-click="addItem()">
+    <input type="checkbox"  ng-model="showAlreadyAdded">ShowItemsAlreadyAdded</p>
+    <div ng-model"listOflements">
+        <div ng-repeat="item in itemsList |filter: filterSubmitted">
+             <input type="checkbox" ng-model="item.checked" ng-show="{{!item.submitted}}"> {{item.item}}
+        </div>
+    </div>
+
+    <input type="submit"  value="submitList" ng-click="submitList()">
+    <input type="submit" value="delete selected" ng-click="deleteSelected()">
+</div>
