@@ -4,7 +4,6 @@ app.directive('cart', function () {
     function linkingFunction(scope, element, attrs) {
 
 }
-
     function controller($scope) {
        ///list of items on the cart
         $scope.cartList=[
